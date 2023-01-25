@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engirald <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/24 17:35:08 by engirald          #+#    #+#             */
-/*   Updated: 2023/01/24 18:10:07 by engirald         ###   ########.fr       */
+/*   Created: 2023/01/19 21:33:53 by engirald          #+#    #+#             */
+/*   Updated: 2023/01/19 21:33:57 by engirald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int     ft_memcmp(const void *s1, const void *s2, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-    unsigned char *p1;
-    unsigned char *p2;
+	size_t	s;
+	size_t	d;
+	size_t	di;
+	size_t	si;
 
-    p1 = (unsigned char *)s1;
-    p2 = (unsigned char *)s2;
-    while (n--)
-    {
-        if (*p1 != *p2)
-            return (*p1 - *p2);
-        p1++;
-        p2++;
-    }
-    return (0);
+	si = ft_strlen(src);
+	if (!dst && size == 0)
+		return (si);
+	d = ft_strlen(dst);
+	di = d;
+	if (size <= di)
+		return (size + si);
+	s = 0;
+	while (src[s] && d + 1 < size)
+	{
+		dst[d] = src[s];
+		s++;
+		d++;
+	}
+	dst[d] = 0;
+	return (di + si);
 }
-
