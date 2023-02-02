@@ -1,42 +1,25 @@
-#include <stdio.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: engirald <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/28 10:23:44 by engirald          #+#    #+#             */
+/*   Updated: 2023/01/28 10:24:41 by engirald         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void ft_bzero(void *s, size_t n)
+#include "libft.h"
+
+void
+	*ft_calloc(size_t count, size_t size)
 {
-    unsigned char *p;
+	void	*ptr;
 
-    p = (unsigned char *)s;
-    while (n--)
-        *p++ = '\0';
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*array;
-
-	array = (void *)malloc(nmemb * size);
-	if (array == NULL)
+	ptr = (void *)malloc(count * size);
+	if (!ptr)
 		return (NULL);
-	ft_bzero(array, (nmemb * size));
-	return (array);
-}
-
-int main(void)
-{
-    int n = 5;
-    int *ptr;
-
-    ptr = (int *)ft_calloc(n, sizeof(int));
-    if (ptr == NULL)
-    {
-        printf("Memory allocation failed\n");
-        return (1);
-    }
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d ", ptr[i]);
-    }
-    printf("\n");
-    free(ptr);
-    return (0);
+	ft_bzero(ptr, count);
+	return (ptr);
 }
