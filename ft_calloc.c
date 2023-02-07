@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: engirald <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: engirald <engirald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 10:23:44 by engirald          #+#    #+#             */
-/*   Updated: 2023/01/28 10:24:41 by engirald         ###   ########.fr       */
+/*   Created: 2023/02/07 18:19:36 by engirald          #+#    #+#             */
+/*   Updated: 2023/02/07 18:19:37 by engirald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void
 {
 	void	*ptr;
 
-	ptr = (void *)malloc(count * size);
-	if (!ptr)
+	if (count == SIZE_MAX && size == SIZE_MAX)
 		return (NULL);
-	ft_bzero(ptr, count);
+	ptr = (void *)malloc(count * size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, size * count);
 	return (ptr);
 }
